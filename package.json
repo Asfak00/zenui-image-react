@@ -1,6 +1,6 @@
 {
   "name": "zenui-lazy-image-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Render responsive images with lazy loading and optimized performance using customizable placeholders and skeletons.",
   "main": "dist/LazyLoadImage.js",
   "module": "dist/LazyLoadImage.js",
