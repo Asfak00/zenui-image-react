@@ -1,21 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
+import ResponsiveImage from './ResponsiveImage';
 
 const LazyLoadImage = ({
-                           src,
-                           alt,
-                           placeholder,
-                           className,
-                           style,
-                           onLoad,
-                           onError,
-                           placeholderEffect,
-                           customSkeleton,
-                           offset,
-                           useIntersectionObserver,
-                           scroll,
-                           ...props
-                       }) => {
+   src,
+   alt,
+   placeholder,
+   className,
+   style,
+   onLoad,
+   onError,
+   placeholderEffect = 'none',
+   customSkeleton,
+   offset,
+   useIntersectionObserver = true,
+   scroll = false,
+   optimize = false,
+   breakpoints,
+   ...props
+}) => {
+
     const [isLoaded, setIsLoaded] = useState(false);
     const imageRef = useRef(null);
 
@@ -64,8 +68,6 @@ const LazyLoadImage = ({
         };
     }, [useIntersectionObserver, offset, scroll]);
 
-    const placeholderStyle = placeholderEffect === 'blur' ? { filter: 'blur(10px)' } : placeholderEffect === 'opacity' ? { opacity: 0.5 } : {};
-
     return (
         <div
             ref={imageRef}
@@ -74,9 +76,23 @@ const LazyLoadImage = ({
             {...props}
         >
             {isLoaded ? (
-                <img src={src} alt={alt} onLoad={onLoad} onError={onError} style={{ width: '100%', height: 'auto' }} />
+                <ResponsiveImage
+                    src={src}
+                    alt={alt}
+                    placeholder={placeholder}
+                    placeholderEffect={placeholderEffect}
+                    customSkeleton={customSkeleton}
+                    optimize={optimize}
+                    breakpoints={breakpoints}
+                    onLoad={onLoad}
+                    onError={onError}
+                />
             ) : (
-                customSkeleton ? customSkeleton : <img src={placeholder} alt="placeholder" style={{ width: '100%', height: 'auto', ...placeholderStyle }} />
+                <Placeholder
+                    placeholder={placeholder}
+                    placeholderEffect={placeholderEffect}
+                    customSkeleton={customSkeleton}
+                />
             )}
         </div>
     );
@@ -95,6 +111,8 @@ LazyLoadImage.propTypes = {
     offset: PropTypes.number,
     useIntersectionObserver: PropTypes.bool,
     scroll: PropTypes.bool,
+    optimize: PropTypes.bool,
+    breakpoints: PropTypes.object,
 };
 
 LazyLoadImage.defaultProps = {
@@ -109,6 +127,8 @@ LazyLoadImage.defaultProps = {
     offset: 0,
     useIntersectionObserver: true,
     scroll: false,
+    optimize: false,
+    breakpoints: {},
 };
 
 export default LazyLoadImage;
