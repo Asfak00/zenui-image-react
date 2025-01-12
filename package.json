@@ -1,0 +1,40 @@
+{
+  "name": "zenui-lazy-image-react",
+  "version": "1.0.0",
+  "description": "Render images with lazy loading and optimized performance using customizable placeholders and skeletons.",
+  "main": "dist/LazyLoadImage.js",
+  "module": "dist/LazyLoadImage.js",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "babel src --out-dir dist"
+  },
+  "keywords": [
+    "react",
+    "lazy-load",
+    "image",
+    "lazy-loading",
+    "lazy-image-react",
+    "placeholder",
+    "skeleton"
+  ],
+  "author": "Asfak Ahmed",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Asfak00/zenui-lazy-image-react.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Asfak00/zenui-lazy-image-react/issues"
+  },
+  "dependencies": {
+    "prop-types": "^15.8.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5"
+  }
+}
