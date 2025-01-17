@@ -20,7 +20,7 @@ A highly customizable, performance-focused React component for lazy loading imag
 
 If our GitHub repository reaches 200 stars ⭐, we will proudly launch the Vue version of this package.
 
-[**Star the Repository on GitHub**](https://github.com/Asfak00/zenui-lazy-image-react)
+[**Star the Repository on GitHub**](https://github.com/Asfak00/zenui-image-react)
 
 ## Installation
 
