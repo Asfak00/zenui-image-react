@@ -4,7 +4,7 @@ A highly customizable, performance-focused React component for lazy loading imag
 
 ![cover image](https://i.ibb.co.com/35xc2K3/package-cover.png "cover image")
 
-### Try it with our [Playground]()
+### Try it with our [Playground](https://zenui.net/lazy-image-react-playground)
 
 ## Features
 
@@ -15,6 +15,12 @@ A highly customizable, performance-focused React component for lazy loading imag
 - ⚡ **Performance Optimized**: Intersection Observer for efficient lazy loading
 - 🛠 **Highly Customizable**: Extensive props for fine-tuning behavior
 - 📦 **Lightweight**: Small bundle size.
+
+---
+
+If our GitHub repository reaches 200 stars ⭐, we will proudly launch the Vue version of this package.
+
+[**Star the Repository on GitHub**](https://github.com/Asfak00/zenui-lazy-image-react)
 
 ## Installation
 
@@ -85,10 +91,10 @@ Enable automatic responsive image optimization:
     xl: 1200
   }}
   imageWidths={{
-    sm: [576, 640],
-    md: [768, 828],
-    lg: [992, 1080],
-    xl: [1200, 1280]
+    sm: [576],
+    md: [768],
+    lg: [992],
+    xl: [1200]
   }}
 />
 ```
@@ -149,12 +155,12 @@ Control the intersection observer and loading offset:
 
 ```javascript
 {
-  xs: [320, 375],
-  sm: [576, 640],
-  md: [768, 828],
-  lg: [992, 1080],
-  xl: [1200, 1280],
-  xxl: [1400, 1536]
+  xs: [320],
+  sm: [576],
+  md: [768],
+  lg: [992],
+  xl: [1200],
+  xxl: [1400]
 }
 ```
 

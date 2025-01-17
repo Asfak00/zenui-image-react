@@ -1,8 +1,8 @@
-import React, { useState, useRef, useMemo } from 'react';
+import React, {useState, useRef, useCallback, useMemo, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import { PlaceholderTypes, EffectTypes } from '../../constants/types';
 import { defaultBreakpoints, defaultImageWidths } from '../../config/defaults';
-import { generateSrcSet, generateSizes } from '../../utils/imageUtils';
+import {generateSrcSet, generateSizes, getOptimalImageWidth} from '../../utils/imageUtils';
 import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import Placeholder from '../Placeholder/Placeholder';
 
@@ -30,6 +30,7 @@ const LazyLoadImage = ({
 }) => {
     const [isLoaded, setIsLoaded] = useState(false);
     const imageRef = useRef(null);
+    const [currentWidth, setCurrentWidth] = useState(0);
 
     const mergedBreakpoints = useMemo(
         () => ({ ...defaultBreakpoints, ...breakpoints }),
@@ -45,6 +46,37 @@ const LazyLoadImage = ({
         enabled: enableIntersectionObserver,
         offset
     });
+
+    const getOptimalWidth = useCallback((deviceWidth) => {
+        return getOptimalImageWidth(deviceWidth, mergedBreakpoints, mergedWidths);
+    }, [mergedBreakpoints, mergedWidths]);
+
+    useEffect(() => {
+        const updateWidth = () => {
+            const deviceWidth = window.innerWidth;
+            const optimalWidth = getOptimalWidth(deviceWidth);
+            setCurrentWidth(optimalWidth);
+        };
+
+        updateWidth();
+
+        let timeoutId;
+        const handleResize = () => {
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(updateWidth, 150);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            clearTimeout(timeoutId);
+        };
+    }, [getOptimalWidth]);
+
+    const optimizedSrc = useMemo(() => {
+        if (!optimize || !currentWidth) return src;
+        return `${src}?w=${currentWidth}&q=${quality}`;
+    }, [src, optimize, currentWidth, quality]);
 
     const srcSet = useMemo(
         () => optimize ? generateSrcSet(src, mergedWidths, quality) : '',
@@ -88,7 +120,7 @@ const LazyLoadImage = ({
             />
             {isInView && (
                 <img
-                    src={optimize ? `${src}?w=${mergedWidths.md[0]}&q=${quality}` : src}
+                    src={optimizedSrc}
                     srcSet={srcSet}
                     sizes={sizeAttribute}
                     alt={alt}
@@ -101,7 +133,7 @@ const LazyLoadImage = ({
                         opacity: isLoaded ? 1 : 0,
                         transition: 'opacity 0.3s ease-in-out'
                     }}
-                    loading="lazy"
+                    loading={optimize ? "lazy" : "eager"}
                     decoding="async"
                 />
             )}
