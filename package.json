@@ -1,5 +1,5 @@
 {
-  "name": "zenui-lazy-image-react",
+  "name": "zenui-image-react",
   "version": "1.0.0",
   "description": "Render responsive images with lazy loading and optimized performance using customizable placeholders and skeletons.",
   "main": "dist/index.js",
@@ -22,10 +22,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Asfak00/zenui-lazy-image-react.git"
+    "url": "git+https://github.com/Asfak00/zenui-image-react.git"
   },
   "bugs": {
-    "url": "https://github.com/Asfak00/zenui-lazy-image-react/issues"
+    "url": "https://github.com/Asfak00/zenui-image-react/issues"
   },
   "scripts": {
     "build": "rollup -c",

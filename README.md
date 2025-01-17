@@ -1,10 +1,10 @@
-# ZenUI Lazy Image React
+# ZenUI Image React
 
 A highly customizable, performance-focused React component for lazy loading images with advanced features like placeholder effects, image optimization, and responsive loading.
 
-![cover image](https://i.ibb.co.com/35xc2K3/package-cover.png "cover image")
+![cover image](https://i.ibb.co.com/68GH4C4/package-cover.png "cover image")
 
-### Try it with our [Playground](https://zenui.net/lazy-image-react-playground)
+### Try it with our [Playground](https://zenui.net/zenui-image-react-playground)
 
 ## Features
 
@@ -25,13 +25,13 @@ If our GitHub repository reaches 200 stars ⭐, we will proudly launch the Vue v
 ## Installation
 
 ```bash
-npm install zenui-lazy-image-react
+npm install zenui-image-react
 ```
 
 ## Basic Usage
 
 ```jsx
-import { LazyLoadImage } from 'zenui-lazy-image-react';
+import { LazyLoadImage } from 'zenui-image-react';
 
 function MyComponent() {
   return (
